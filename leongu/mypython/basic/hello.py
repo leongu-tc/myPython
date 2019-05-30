@@ -1,5 +1,11 @@
 #!/usr/bin/python
 #coding=utf-8
+
+import time
+import calendar
+
+
+
 print "Hello, 中国!"
 
 if True:
@@ -35,14 +41,14 @@ print counter
 print miles
 print name
 print '---------'
-str = 'Hello World!'
-print str           # 输出完整字符串
-print str[0]        # 输出字符串中的第一个字符
-print str[2:5]      # 输出字符串中第三个至第六个之间的字符串
-print str[2:5:2]      # 输出字符串中第三个至第六个之间的字符串
-print str[2:]       # 输出从第三个字符开始的字符串
-print str * 2       # 输出字符串两次
-print str + "TEST"  # 输出连接的字符串
+str1 = 'Hello World!'
+print str1           # 输出完整字符串
+print str1[0]        # 输出字符串中的第一个字符
+print str1[2:5]      # 输出字符串中第三个至第六个之间的字符串
+print str1[2:5:2]      # 输出字符串中第三个至第六个之间的字符串
+print str1[2:]       # 输出从第三个字符开始的字符串
+print str1 * 2       # 输出字符串两次
+print str1 + "TEST"  # 输出连接的字符串
 print '---------'
 
 list = ['runoob', 786, 2.23, 'john', 70.2]
@@ -64,6 +70,8 @@ tinydict = {'name': 'john', 'code': 6734, 'dept': 'sales'}
 print dict['one']  # 输出键为'one' 的值
 print dict[2]  # 输出键为 2 的值
 print tinydict  # 输出完整的字典
+print str(tinydict)  # 输出完整的字典
+print type(tinydict)
 print tinydict.keys()  # 输出所有键
 print tinydict.values()  # 输出所有值
 print '---------'
@@ -364,6 +372,193 @@ print r'\n'
 print R'\n'
 print "My name is %s and weight is %d kg!" % ('Zara', 21)
 
+print '---------'
+
+ticks = time.time()
+print "当前时间戳为:", ticks
+localtime = time.localtime(time.time())
+print "本地时间为 :", localtime
+localtime = time.asctime(time.localtime(time.time()))
+print "本地时间为 :", localtime
+
+# 格式化成2016-03-20 11:45:39形式
+print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+# 格式化成Sat Mar 28 22:24:24 2016形式
+print time.strftime("%a %b %d %H:%M:%S %Y", time.localtime())
+
+# 将格式字符串转换为时间戳
+a = "Sat Mar 28 22:24:24 2016"
+print time.mktime(time.strptime(a, "%a %b %d %H:%M:%S %Y"))
+
+cal = calendar.month(2016, 1)
+print "以下输出2016年1月份的日历:"
+print cal
+print '---------'
+
+
+# 定义函数
+def printme(str):
+    "打印任何传入的字符串"
+    print str;
+    return;
+
+# 调用函数
+printme("我要调用用户自定义函数!");
+printme("再次调用同一函数");
+
+
+def ChangeInt(a):
+    a = 10
+
+b = 2
+ChangeInt(b)
+print b  # 结果是 2
+
+
+def ChangeInt(b):
+    b = 10
+
+b = 2
+ChangeInt(b)
+print b  # 结果是 2
+print '---------'
+
+
+# 可写函数说明
+def printinfo(name, age=35):
+    "打印任何传入的字符串"
+    print "Name: ", name;
+    print "Age ", age;
+    return;
+
+
+# 调用printinfo函数
+printinfo("zhangsan");
+printinfo(age=50, name="miki");
+printinfo(name="miki");
+print '---------'
+
+
+# 可写函数说明
+def printinfo(arg1, *vartuple):
+    "打印任何传入的参数"
+    print "输出: "
+    print arg1
+    for var in vartuple:
+        print var
+    return;
+
+
+# 调用printinfo 函数
+printinfo(10);
+printinfo(70, 60, 50);
+print '---------'
+# 可写函数说明
+sum = lambda arg1, arg2: arg1 + arg2;
+
+# 调用sum函数
+print "相加后的值为 : ", sum(10, 20)
+print "相加后的值为 : ", sum(20, 20)
+
+
+# 可写函数说明
+def sum(arg1, arg2):
+    # 返回2个参数的和."
+    total = arg1 + arg2
+    print "函数内 : ", total
+    return total;
+
+
+# 调用sum函数
+total = sum(10, 20);
+print '---------'
+total = 0;  # 这是一个全局变量
+
+# 可写函数说明
+def sum(arg1, arg2):
+    # 返回2个参数的和."
+    total = arg1 + arg2;  # total在这里是局部变量.
+    print "函数内是局部变量 : ", total
+    return total;
+
+
+# 调用sum函数
+sum(10, 20);
+print "函数外是全局变量 : ", total
+print '---------'
+# 导入模块
+import support
+
+# 现在可以调用模块里包含的函数了
+support.print_func("Runoob")
+print '---------'
+Money = 2000
+
+
+def AddMoney():
+    # 想改正代码就取消以下注释:
+    print globals().keys()
+    print locals().keys()
+    global Money
+    Money = Money + 1
+
+
+print Money
+AddMoney()
+print Money
+print '---------'
+# 打开一个文件
+fo = open("/Users/apple/workspaces/github/myPython/README.md", "r+")
+print "文件名: ", fo.name
+print "是否已关闭 : ", fo.closed
+print "访问模式 : ", fo.mode
+print "末尾是否强制加空格 : ", fo.softspace
+str = fo.read(100)
+print "读取的字符串是 : ", str
+# 关闭打开的文件
+fo.close()
+print '---------'
+try:
+    fh = open("testfile", "w")
+    fh.write("这是一个测试文件，用于测试异常!!")
+except IOError:
+    print "Error: 没有找到文件或读取文件失败"
+else:
+    print "内容写入文件成功"
+    fh.close()
+print '---------'
+# 定义函数
+def temp_convert(var):
+    try:
+        return int(var)
+    except ValueError, Argument:
+        print "参数没有包含数字\n", Argument
+
+# 调用函数
+temp_convert("xyz");
+print '---------'
+# 定义函数
+def mye( level ):
+    if level < 1:
+        raise Exception,"Invalid level!"
+        # 触发异常后，后面的代码就不会再执行
+try:
+    mye(0)            # 触发异常
+except Exception,err:
+    print 1,err
+else:
+    print 2
+print '---------'
+class Networkerror(RuntimeError):
+    def __init__(self, arg):
+        self.args = arg
+
+try:
+    raise Networkerror("Bad hostname")
+except Networkerror,e:
+    print e.args
+print '---------'
 print '---------'
 print '---------'
 print '---------'
